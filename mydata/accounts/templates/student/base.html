@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <meta name="google" content="notranslate"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+
+    <title>HH's Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<style>
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: blue;
+            text-align: center;
+        }
+
+
+</style>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="mainNav">
+    <div>
+        <ul>
+
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<div class="container">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active"><a class="nav-link" href="show/">Show All</a></li>
+                <li class="nav-item active"><a class="nav-link" href="loadform/">Add New</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold" href="{% url 'signup' %}">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+            <form method="POST" action="search" class="form-inline my-2 my-lg-0">
+                {% csrf_token %}
+                <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    {%block content%}}
+    {% endblock %}
+
+
+    <footer class="footer py-3 bg-grey">
+        <p class="m-0 text-dark text-center">Data Site...</p>
+    </footer>
+</div>
+</body>
+
+</html>
